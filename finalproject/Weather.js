@@ -6,9 +6,13 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   View,
+  ScrollView,
+  Dimensions,
 } from "react-native";
 import { theme } from "./color";
 import React, { useState } from "react";
+
+const { width: SCREEN_SIZE } = Dimensions.get("window");
 
 export const WeatherScreen = ({ navigation }) => {
   const [click, setClick] = useState(false);
@@ -16,8 +20,34 @@ export const WeatherScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <View style={{ flex: 6, backgroundColor: "teal" }}></View>
-      <View style={{ flex: 1, backgroundColor: "yellow" }}>
+      <View style={{ flex: 6, backgroundColor: "#74b9ff" }}>
+        <View style={styles.city}>
+          <Text style={styles.cityName}>Bloomington</Text>
+        </View>
+        <ScrollView
+          horizontal
+          pagingEnabled
+          contentContainerStyle={styles.weather}
+        >
+          <View style={styles.day}>
+            <Text style={styles.temp}>3</Text>
+            <Text style={styles.weatherLook}>Sunny</Text>
+          </View>
+          <View style={styles.day}>
+            <Text style={styles.temp}>3</Text>
+            <Text style={styles.weatherLook}>Sunny</Text>
+          </View>
+          <View style={styles.day}>
+            <Text style={styles.temp}>3</Text>
+            <Text style={styles.weatherLook}>Sunny</Text>
+          </View>
+          <View style={styles.day}>
+            <Text style={styles.temp}>3</Text>
+            <Text style={styles.weatherLook}>Sunny</Text>
+          </View>
+        </ScrollView>
+      </View>
+      <View style={{ flex: 1, backgroundColor: "#5B6265" }}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.navigate("ToDoList")}>
             <Text
@@ -48,6 +78,28 @@ export const WeatherScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  city: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cityName: {
+    fontSize: 40,
+    fontWeight: "600",
+  },
+  weather: {},
+  day: {
+    width: SCREEN_SIZE,
+    alignItems: "center",
+  },
+  temp: {
+    marginTop: 50,
+    fontSize: 178,
+  },
+  weatherLook: {
+    marginTop: -30,
+    fontSize: 60,
   },
   header: {
     flex: 1,
